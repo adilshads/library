@@ -1,0 +1,90 @@
+name: CI CD
+run-name: ${{ github.actor }} is testing  🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 This job's status is ${{ job.status }}."     
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+
+      # Run Build Verification Test (BVT)
+      - name: Run BVT
+        run: |
+          # Add commands to run your BVT
+          # For example:
+          echo "Running Build Verification Test..."
+          # Add commands to compile or execute the necessary BVT scripts or commands
+          
+          # Example commands to validate the presence of index.html and style.css files
+          if [ -f index.html ]; then
+            echo "index.html file found!"
+          else
+            echo "index.html file not found!"
+            exit 1
+          fi
+
+          if [ -f styles.css ]; then
+            echo "styles.css file found!"
+          else
+            echo "styles.css file not found!"
+            exit 1
+          fi
+          
+          if [ -f script.js ]; then
+            echo "script.js file found!"
+          else
+            echo "script.js file not found!"
+            exit 1
+          fi
+          
+          # Ensure to capture the result of the BVT execution
+
+          # Example exit code handling for success or failure
+          if [ $? -eq 0 ]; then
+            echo "BVT passed!"
+          else
+            echo "BVT failed!"
+            exit 1
+          fi
+
+      # Additional steps for reporting or notifications
+
+      # Add build steps here, such as compiling your code or preparing the application
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+
+      # Add test steps here, such as running unit tests or integration tests, functional test
+      # Performance tests, security tests, acceptance tests. 
+
+  deploy:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+
+      # Add deployment steps here, such as deploying your application to a server or a cloud platform
+
+      # You can also include additional steps for notifications or clean-up actions after deployment
