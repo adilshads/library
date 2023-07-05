@@ -32,7 +32,7 @@ function displayLibrary() {
   for (let i = 0; i < myLibrary.length; i++) {
     const book = myLibrary[i];
     const bookDiv = document.createElement("div");
-    bookDiv.textContent = `BooK: ${book.title} By: ${book.author}, Pages: ${book.pages}`;
+    bookDiv.textContent = `Book: ${book.title} By: ${book.author}, Pages: ${book.pages}`;
     libraryDiv.appendChild(bookDiv);
   }
 }
