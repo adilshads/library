@@ -9,7 +9,7 @@ function Book(title, author, pages) {
 function addBookToLibrary() {
   const title = prompt("Enter the book title:");
   const author = prompt("Enter the author's name:");
-  const pages = prompt("Enter the number of pages:");
+  let pages = prompt("Enter the number of pages:");
 
   // Validate and convert pages to an integer
   while (!Number.isInteger(Number(pages))) {
@@ -17,7 +17,22 @@ function addBookToLibrary() {
   }
   pages = parseInt(pages);
 
-  // Add new book to page from information recieved from user
+  // Add new book to the library from information received from the user
   const book = new Book(title, author, pages);
   myLibrary.push(book);
+
+  displayLibrary();
+}
+
+function displayLibrary() {
+  const libraryDiv = document.getElementById("library");
+  libraryDiv.innerHTML = ""; // Clear previous content
+
+  // Create HTML elements for each book in the library
+  for (let i = 0; i < myLibrary.length; i++) {
+    const book = myLibrary[i];
+    const bookDiv = document.createElement("div");
+    bookDiv.textContent = `BooK: ${book.title} By: ${book.author}, Pages: ${book.pages}`;
+    libraryDiv.appendChild(bookDiv);
+  }
 }
