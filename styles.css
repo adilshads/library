@@ -1,0 +1,13 @@
+/* Add your CSS styles here */
+
+.form-container {
+  display: none;
+}
+
+.display-container {
+  margin-top: 20px;
+}
+
+.completed {
+  text-decoration: line-through;
+}

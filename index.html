@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
-    <script src="script.js" defer></script>
+  <title>My Library</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h1>My Library</h1>
-    <button onclick="addItemToLibrary('books')">Add Book</button>
-    <button onclick="addItemToLibrary('movies')">Add Movie</button>
-    <button onclick="addItemToLibrary('tvShows')">Add TV Show</button>
-    <button onclick="addItemToLibrary('podcasts')">Add Podcast</button>
-    <div id="library"></div> <!-- A div element to display the library -->
+  <h1>My Library</h1>
+  <div id="library-container"></div>
+
+  <button onclick="openForm('Book')">Add Book</button>
+  <button onclick="openForm('Movie')">Add Movie</button>
+  <button onclick="openForm('TVShow')">Add TV Show</button>
+  <button onclick="openForm('Podcast')">Add Podcast</button>
+
+  <div id="form-container"></div>
+
+  <div id="display-container"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>

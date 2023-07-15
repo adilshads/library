@@ -1,208 +1,297 @@
-let library = {
-  books: [],
-  movies: [],
-  tvShows: [],
-  podcasts: []
-};
+let myLibrary = [];
 
-function Book(title, author, pages, image, link) {
+function Book(title, author, pages, completed) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.image = image;
-  this.link = link;
+  this.completed = completed;
 }
 
-function Movie(title, director, duration, image, link) {
+function Movie(title, director, duration, completed) {
   this.title = title;
   this.director = director;
   this.duration = duration;
-  this.image = image;
-  this.link = link;
+  this.completed = completed;
 }
 
-function TVShow(title, creator, seasons, image, link) {
+function TVShow(title, creator, numEpisodes, completed) {
   this.title = title;
   this.creator = creator;
-  this.seasons = seasons;
-  this.image = image;
-  this.link = link;
+  this.numEpisodes = numEpisodes;
+  this.completed = completed;
 }
 
-function Podcast(title, host, episodes, image, link) {
+function Podcast(title, host, duration, completed) {
   this.title = title;
   this.host = host;
-  this.episodes = episodes;
-  this.image = image;
-  this.link = link;
+  this.duration = duration;
+  this.completed = completed;
 }
 
-function addItemToLibrary(category) {
-  let newItem;
-  let categoryPrompt;
-  let categoryArray;
-
-  switch (category) {
-    case "books":
-      categoryPrompt = "Enter the book title:";
-      categoryArray = library.books;
-      newItem = Book;
-      break;
-    case "movies":
-      categoryPrompt = "Enter the movie title:";
-      categoryArray = library.movies;
-      newItem = Movie;
-      break;
-    case "tvShows":
-      categoryPrompt = "Enter the TV show title:";
-      categoryArray = library.tvShows;
-      newItem = TVShow;
-      break;
-    case "podcasts":
-      categoryPrompt = "Enter the podcast title:";
-      categoryArray = library.podcasts;
-      newItem = Podcast;
-      break;
-    default:
-      return;
-  }
-
-  const title = prompt(categoryPrompt);
-  const creator = prompt("Enter the creator/director/host:");
-  let details = null;
-
-  switch (category) {
-    case "books":
-      let author = prompt("Enter the author's name:");
-      let pages = prompt("Enter the number of pages:");
-      const bookImage = prompt("Enter the image URL or leave it empty to skip:");
-      const bookLink = prompt("Enter the link where the user can find the book (optional):");
-
-      // Validate and convert pages to an integer
-      while (!Number.isInteger(Number(pages))) {
-        pages = prompt("Invalid input. Please enter the number of pages as an integer:");
-      }
-      pages = parseInt(pages);
-
-      details = new newItem(title, author, pages, bookImage, bookLink);
-      break;
-    case "movies":
-      let director = prompt("Enter the director's name:");
-      let duration = prompt("Enter the duration (in minutes):");
-      const movieImage = prompt("Enter the image URL or leave it empty to skip:");
-      const movieLink = prompt("Enter the link where the user can find the movie (optional):");
-
-      // Validate and convert duration to an integer
-      while (!Number.isInteger(Number(duration))) {
-        duration = prompt("Invalid input. Please enter the duration as an integer (in minutes):");
-      }
-      duration = parseInt(duration);
-
-      details = new newItem(title, director, duration, movieImage, movieLink);
-      break;
-    case "tvShows":
-      let showCreator = prompt("Enter the TV show creator's name:");
-      let seasons = prompt("Enter the number of seasons:");
-      const showImage = prompt("Enter the image URL or leave it empty to skip:");
-      const showLink = prompt("Enter the link where the user can find the TV show (optional):");
-
-      // Validate and convert seasons to an integer
-      while (!Number.isInteger(Number(seasons))) {
-        seasons = prompt("Invalid input. Please enter the number of seasons as an integer:");
-      }
-      seasons = parseInt(seasons);
-
-      details = new newItem(title, showCreator, seasons, showImage, showLink);
-      break;
-    case "podcasts":
-      let host = prompt("Enter the podcast host's name:");
-      let episodes = prompt("Enter the number of episodes:");
-      const podcastImage = prompt("Enter the image URL or leave it empty to skip:");
-      const podcastLink = prompt("Enter the link where the user can find the podcast (optional):");
-
-      // Validate and convert episodes to an integer
-      while (!Number.isInteger(Number(episodes))) {
-        episodes = prompt("Invalid input. Please enter the number of episodes as an integer:");
-      }
-      episodes = parseInt(episodes);
-
-      details = new newItem(title, host, episodes, podcastImage, podcastLink);
-      break;
-    default:
-      return;
-  }
-
-  categoryArray.push(details);
-
+function addBookToLibrary(title, author, pages, completed) {
+  const book = new Book(title, author, pages, completed);
+  myLibrary.push(book);
   displayLibrary();
 }
 
-function displayLibrary() {
-  const libraryDiv = document.getElementById("library");
-  libraryDiv.innerHTML = ""; // Clear previous content
+function addMovieToLibrary(title, director, duration, completed) {
+  const movie = new Movie(title, director, duration, completed);
+  myLibrary.push(movie);
+  displayLibrary();
+}
 
-  // Iterate through each category in the library
-  for (const category in library) {
-    if (library.hasOwnProperty(category)) {
-      const categoryArray = library[category];
+function addTVShowToLibrary(title, creator, numEpisodes, completed) {
+  const tvShow = new TVShow(title, creator, numEpisodes, completed);
+  myLibrary.push(tvShow);
+  displayLibrary();
+}
 
-      // Create a heading for the category
-      const categoryHeading = document.createElement("h2");
-      categoryHeading.textContent = category;
-      libraryDiv.appendChild(categoryHeading);
+function addPodcastToLibrary(title, host, duration, completed) {
+  const podcast = new Podcast(title, host, duration, completed);
+  myLibrary.push(podcast);
+  displayLibrary();
+}
 
-      // Create HTML elements for each item in the category
-      for (let i = 0; i < categoryArray.length; i++) {
-        const item = categoryArray[i];
-        const itemDiv = document.createElement("div");
+function openForm(type, itemIndex) {
+  const formContainer = document.getElementById('form-container');
+  formContainer.innerHTML = '';
 
-        // Create an image element if an image URL is provided
-        if (item.image) {
-          const image = document.createElement("img");
-          image.src = item.image;
-          itemDiv.appendChild(image);
-        }
+  const form = document.createElement('form');
+  form.setAttribute('onsubmit', `handleFormSubmit(event, '${type}', ${itemIndex})`);
 
-        // Create a paragraph element for the item details
-        const itemInfo = document.createElement("p");
+  const titleLabel = document.createElement('label');
+  titleLabel.textContent = 'Title:';
+  const titleInput = document.createElement('input');
+  titleInput.setAttribute('type', 'text');
+  titleInput.setAttribute('name', 'title');
+  titleLabel.appendChild(titleInput);
 
-        // Create a link if an item link is provided
-        if (item.link) {
-          const itemLink = document.createElement("a");
-          itemLink.href = item.link;
-          itemLink.textContent = getItemDetails(item);
-          itemLink.target = "_blank";
-          itemInfo.appendChild(itemLink);
-        } else {
-          itemInfo.textContent = getItemDetails(item);
-        }
+  const authorLabel = document.createElement('label');
+  authorLabel.textContent = 'Author/Director/Creator:';
+  const authorInput = document.createElement('input');
+  authorInput.setAttribute('type', 'text');
+  authorInput.setAttribute('name', 'author');
+  authorLabel.appendChild(authorInput);
 
-        itemDiv.appendChild(itemInfo);
-        libraryDiv.appendChild(itemDiv);
-      }
+  let extraLabel, extraInput;
+
+  if (type === 'Book') {
+    extraLabel = document.createElement('label');
+    extraLabel.textContent = 'Number of Pages:';
+    extraInput = document.createElement('input');
+    extraInput.setAttribute('type', 'number');
+    extraInput.setAttribute('name', 'pages');
+    extraLabel.appendChild(extraInput);
+  } else if (type === 'Movie') {
+    extraLabel = document.createElement('label');
+    extraLabel.textContent = 'Director:';
+    extraInput = document.createElement('input');
+    extraInput.setAttribute('type', 'text');
+    extraInput.setAttribute('name', 'director');
+    extraLabel.appendChild(extraInput);
+
+    const durationLabel = document.createElement('label');
+    durationLabel.textContent = 'Duration (in minutes):';
+    const durationInput = document.createElement('input');
+    durationInput.setAttribute('type', 'number');
+    durationInput.setAttribute('name', 'duration');
+    durationLabel.appendChild(durationInput);
+    form.appendChild(durationLabel);
+  } else if (type === 'TVShow') {
+    extraLabel = document.createElement('label');
+    extraLabel.textContent = 'Creator:';
+    extraInput = document.createElement('input');
+    extraInput.setAttribute('type', 'text');
+    extraInput.setAttribute('name', 'creator');
+    extraLabel.appendChild(extraInput);
+
+    const episodesLabel = document.createElement('label');
+    episodesLabel.textContent = 'Number of Episodes:';
+    const episodesInput = document.createElement('input');
+    episodesInput.setAttribute('type', 'number');
+    episodesInput.setAttribute('name', 'numEpisodes');
+    episodesLabel.appendChild(episodesInput);
+    form.appendChild(episodesLabel);
+  } else if (type === 'Podcast') {
+    extraLabel = document.createElement('label');
+    extraLabel.textContent = 'Host:';
+    extraInput = document.createElement('input');
+    extraInput.setAttribute('type', 'text');
+    extraInput.setAttribute('name', 'host');
+    extraLabel.appendChild(extraInput);
+
+    const durationLabel = document.createElement('label');
+    durationLabel.textContent = 'Duration (in minutes):';
+    const durationInput = document.createElement('input');
+    durationInput.setAttribute('type', 'number');
+    durationInput.setAttribute('name', 'duration');
+    durationLabel.appendChild(durationInput);
+    form.appendChild(durationLabel);
+  }
+
+  const completedLabel = document.createElement('label');
+  completedLabel.textContent = 'Completed:';
+  const completedInput = document.createElement('input');
+  completedInput.setAttribute('type', 'checkbox');
+  completedInput.setAttribute('name', 'completed');
+  completedLabel.appendChild(completedInput);
+
+  const addButton = document.createElement('button');
+  addButton.textContent = 'Add';
+
+  form.appendChild(titleLabel);
+  form.appendChild(authorLabel);
+  if (extraLabel && extraInput) {
+    form.appendChild(extraLabel);
+    form.appendChild(extraInput);
+  }
+  form.appendChild(completedLabel);
+  form.appendChild(addButton);
+
+  formContainer.appendChild(form);
+  formContainer.style.display = 'block';
+}
+
+function handleFormSubmit(event, type, itemIndex) {
+  event.preventDefault();
+
+  const form = event.target;
+  const title = form.title.value;
+  const author = form.author.value;
+  const completed = form.completed.checked;
+
+  if (type === 'Book') {
+    const pages = form.pages.value;
+    if (itemIndex !== null) {
+      updateLibraryItem(itemIndex, title, author, pages, completed);
+    } else {
+      addBookToLibrary(title, author, pages, completed);
+    }
+  } else if (type === 'Movie') {
+    const director = form.director.value;
+    const duration = form.duration.value;
+    if (itemIndex !== null) {
+      updateLibraryItem(itemIndex, title, director, duration, completed);
+    } else {
+      addMovieToLibrary(title, director, duration, completed);
+    }
+  } else if (type === 'TVShow') {
+    const creator = form.creator.value;
+    const numEpisodes = form.numEpisodes.value;
+    if (itemIndex !== null) {
+      updateLibraryItem(itemIndex, title, creator, numEpisodes, completed);
+    } else {
+      addTVShowToLibrary(title, creator, numEpisodes, completed);
+    }
+  } else if (type === 'Podcast') {
+    const host = form.host.value;
+    const duration = form.duration.value;
+    if (itemIndex !== null) {
+      updateLibraryItem(itemIndex, title, host, duration, completed);
+    } else {
+      addPodcastToLibrary(title, host, duration, completed);
     }
   }
+
+  form.reset();
+  const formContainer = document.getElementById('form-container');
+  formContainer.style.display = 'none';
 }
 
-function getItemDetails(item) {
-  let details = "";
-
-  switch (item.constructor) {
-    case Book:
-      details = `${item.title} by ${item.author}, ${item.pages} pages`;
-      break;
-    case Movie:
-      details = `${item.title} directed by ${item.director}, ${item.duration} minutes`;
-      break;
-    case TVShow:
-      details = `${item.title} created by ${item.creator}, ${item.seasons} seasons`;
-      break;
-    case Podcast:
-      details = `${item.title} hosted by ${item.host}, ${item.episodes} episodes`;
-      break;
-    default:
-      break;
+function updateLibraryItem(itemIndex, title, author, extraValue, completed) {
+  const item = myLibrary[itemIndex];
+  if (item instanceof Book) {
+    item.title = title;
+    item.author = author;
+    item.pages = extraValue;
+    item.completed = completed;
+  } else if (item instanceof Movie) {
+    item.title = title;
+    item.director = author;
+    item.duration = extraValue;
+    item.completed = completed;
+  } else if (item instanceof TVShow) {
+    item.title = title;
+    item.creator = author;
+    item.numEpisodes = extraValue;
+    item.completed = completed;
+  } else if (item instanceof Podcast) {
+    item.title = title;
+    item.host = author;
+    item.duration = extraValue;
+    item.completed = completed;
   }
-
-  return details;
+  displayLibrary();
 }
+
+function displayItem(item) {
+  const displayContainer = document.getElementById('display-container');
+  const itemContainer = document.createElement('div');
+
+  const editButton = document.createElement('button');
+  editButton.textContent = 'Edit';
+  editButton.setAttribute('onclick', `openForm('${getItemType(item)}', ${getLibraryItemIndex(item)})`);
+
+  itemContainer.innerHTML = `<strong>Title:</strong> ${item.title}<br><strong>Author/Director/Creator:</strong> ${item.author}<br>${getExtraFields(item)}<strong>Completed:</strong> <input type="checkbox" ${item.completed ? 'checked' : ''} disabled>`;
+  itemContainer.appendChild(editButton);
+
+  displayContainer.appendChild(itemContainer);
+}
+
+function getExtraFields(item) {
+  if (item instanceof Book) {
+    return `<strong>Number of Pages:</strong> ${item.pages}<br>`;
+  } else if (item instanceof Movie) {
+    return `<strong>Director:</strong> ${item.director}<br><strong>Duration:</strong> ${item.duration} minutes<br>`;
+  } else if (item instanceof TVShow) {
+    return `<strong>Creator:</strong> ${item.creator}<br><strong>Number of Episodes:</strong> ${item.numEpisodes}<br>`;
+  } else if (item instanceof Podcast) {
+    return `<strong>Host:</strong> ${item.host}<br><strong>Duration:</strong> ${item.duration} minutes<br>`;
+  }
+}
+
+function getItemType(item) {
+  if (item instanceof Book) {
+    return 'Book';
+  } else if (item instanceof Movie) {
+    return 'Movie';
+  } else if (item instanceof TVShow) {
+    return 'TVShow';
+  } else if (item instanceof Podcast) {
+    return 'Podcast';
+  }
+}
+
+function getLibraryItemIndex(item) {
+  return myLibrary.findIndex(libraryItem => libraryItem === item);
+}
+
+function deleteItem(itemContainer) {
+  const index = Array.from(itemContainer.parentNode.children).indexOf(itemContainer);
+  if (index !== -1) {
+    myLibrary.splice(index, 1);
+    displayLibrary();
+  }
+}
+
+function displayLibrary() {
+  const libraryContainer = document.getElementById('library-container');
+  libraryContainer.innerHTML = '';
+
+  for (let i = 0; i < myLibrary.length; i++) {
+    const item = myLibrary[i];
+    const itemContainer = document.createElement('div');
+
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.setAttribute('onclick', `openForm('${getItemType(item)}', ${getLibraryItemIndex(item)})`);
+
+    itemContainer.innerHTML = `<strong>Title:</strong> ${item.title}<br><strong>Author/Director/Creator:</strong> ${item.author}<br>${getExtraFields(item)}<strong>Completed:</strong> <input type="checkbox" ${item.completed ? 'checked' : ''} disabled>`;
+    itemContainer.appendChild(editButton);
+
+    libraryContainer.appendChild(itemContainer);
+  }
+}
+
+displayLibrary();
+console.log(myLibrary);
