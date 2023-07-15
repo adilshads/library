@@ -1,13 +1,37 @@
-/* Add your CSS styles here */
-
-.form-container {
-  display: none;
-}
-
-.display-container {
-  margin-top: 20px;
-}
-
-.completed {
-  text-decoration: line-through;
-}
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  h2 {
+    margin-top: 20px;
+  }
+  
+  #library {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .book-card,
+  .movie-card,
+  .tv-show-card,
+  .podcast-card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+  }
+  
+  .book-card button,
+  .movie-card button,
+  .tv-show-card button,
+  .podcast-card button {
+    margin-top: 10px;
+  }
+  
