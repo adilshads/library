@@ -125,7 +125,6 @@ function createBookCard(book, index, containerId) {
   return bookCard;
 }
 
-
 function createMovieCard(movie, index) {
   const movieCard = document.createElement('div');
   movieCard.classList.add('movie-card');
@@ -145,6 +144,14 @@ function createMovieCard(movie, index) {
   const watchedStatus = document.createElement('p');
   watchedStatus.textContent = 'Watched: ' + (movie.watched ? 'Yes' : 'No');
   movieCard.appendChild(watchedStatus);
+
+  if (movie.image) {
+    const image = document.createElement('img');
+    image.src = URL.createObjectURL(movie.image);
+    image.alt = 'Movie Poster';
+    image.classList.add('media-image');
+    movieCard.appendChild(image);
+  }
 
   const removeButton = document.createElement('button');
   removeButton.textContent = 'Remove';
@@ -183,6 +190,14 @@ function createTVShowCard(tvShow, index) {
   watchedStatus.textContent = 'Watched: ' + (tvShow.watched ? 'Yes' : 'No');
   tvShowCard.appendChild(watchedStatus);
 
+  if (tvShow.image) {
+    const image = document.createElement('img');
+    image.src = URL.createObjectURL(tvShow.image);
+    image.alt = 'TV Show Poster';
+    image.classList.add('media-image');
+    tvShowCard.appendChild(image);
+  }
+
   const removeButton = document.createElement('button');
   removeButton.textContent = 'Remove';
   removeButton.addEventListener('click', () => {
@@ -220,6 +235,14 @@ function createPodcastCard(podcast, index) {
   completedStatus.textContent = 'Completed: ' + (podcast.completed ? 'Yes' : 'No');
   podcastCard.appendChild(completedStatus);
 
+  if (podcast.image) {
+    const image = document.createElement('img');
+    image.src = URL.createObjectURL(podcast.image);
+    image.alt = 'Podcast Cover';
+    image.classList.add('media-image');
+    podcastCard.appendChild(image);
+  }
+
   const removeButton = document.createElement('button');
   removeButton.textContent = 'Remove';
   removeButton.addEventListener('click', () => {
@@ -237,19 +260,20 @@ function createPodcastCard(podcast, index) {
   return podcastCard;
 }
 
+
 function addBookToLibrary() {
   const titleInput = document.getElementById('title');
   const authorInput = document.getElementById('author');
   const pagesInput = document.getElementById('pages');
   const readInput = document.getElementById('read');
   const imageInput = document.getElementById('image');
-  
+
   const title = titleInput.value;
   const author = authorInput.value;
   const pages = parseInt(pagesInput.value);
   const read = readInput.checked;
   const image = imageInput.files[0];
-  
+
   const book = new Book(title, author, pages, read, image);
   myLibrary.push(book);
 
@@ -258,7 +282,7 @@ function addBookToLibrary() {
   pagesInput.value = '';
   readInput.checked = false;
   imageInput.value = null;
-  
+
   displayBooks();
   resetImagePreview();
 }
@@ -269,8 +293,9 @@ function addMovieToLibrary() {
   const directorInput = document.getElementById('director');
   const durationInput = document.getElementById('duration');
   const watchedInput = document.getElementById('watched');
-  const imageInput = document.getElementById('image');
-  
+  const imageInput = document.querySelector('#new-movie-form input[type="file"]');
+  const imagePreview = document.getElementById('movie-image-preview');
+
   const title = titleInput.value;
   const director = directorInput.value;
   const duration = parseInt(durationInput.value);
@@ -285,9 +310,9 @@ function addMovieToLibrary() {
   durationInput.value = '';
   watchedInput.checked = false;
   imageInput.value = null;
+  imagePreview.innerHTML = '';
 
   displayMovies();
-  resetImagePreview();
 }
 
 function addTVShowToLibrary() {
@@ -295,8 +320,9 @@ function addTVShowToLibrary() {
   const creatorInput = document.getElementById('show-creator');
   const seasonsInput = document.getElementById('seasons');
   const watchedInput = document.getElementById('watched');
-  const imageInput = document.getElementById('image');
-  
+  const imageInput = document.querySelector('#new-tv-show-form input[type="file"]');
+  const imagePreview = document.getElementById('tv-show-image-preview');
+
   const title = titleInput.value;
   const creator = creatorInput.value;
   const seasons = parseInt(seasonsInput.value);
@@ -311,9 +337,9 @@ function addTVShowToLibrary() {
   seasonsInput.value = '';
   watchedInput.checked = false;
   imageInput.value = null;
+  imagePreview.innerHTML = '';
 
   displayTVShows();
-  resetImagePreview();
 }
 
 function addPodcastToLibrary() {
@@ -321,8 +347,9 @@ function addPodcastToLibrary() {
   const hostInput = document.getElementById('host');
   const episodesInput = document.getElementById('episodes');
   const completedInput = document.getElementById('completed');
-  const imageInput = document.getElementById('image');
-  
+  const imageInput = document.querySelector('#new-podcast-form input[type="file"]');
+  const imagePreview = document.getElementById('podcast-image-preview');
+
   const title = titleInput.value;
   const host = hostInput.value;
   const episodes = parseInt(episodesInput.value);
@@ -337,9 +364,9 @@ function addPodcastToLibrary() {
   episodesInput.value = '';
   completedInput.checked = false;
   imageInput.value = null;
+  imagePreview.innerHTML = '';
 
   displayPodcasts();
-  resetImagePreview();
 }
 
 function removeItemFromLibrary(index, containerId) {
@@ -393,12 +420,12 @@ function toggleCompletedStatus(index) {
   displayPodcasts();
 }
 
-function previewImage() {
-  const imageInput = document.getElementById('image');
-  const imagePreview = document.getElementById('image-preview');
-  imagePreview.innerHTML = '';
+function previewImage(inputId, previewId) {
+  const input = document.getElementById(inputId);
+  const preview = document.getElementById(previewId);
+  preview.innerHTML = '';
 
-  if (imageInput.files && imageInput.files[0]) {
+  if (input.files && input.files[0]) {
     const reader = new FileReader();
 
     reader.onload = function (event) {
@@ -408,13 +435,12 @@ function previewImage() {
       imageElement.setAttribute('alt', 'Image Preview');
       imageElement.classList.add('preview-image');
 
-      imagePreview.appendChild(imageElement);
+      preview.appendChild(imageElement);
     };
 
-    reader.readAsDataURL(imageInput.files[0]);
+    reader.readAsDataURL(input.files[0]);
   }
 }
-
 
 function resetImagePreview() {
   const imageInput = document.getElementById('image');
@@ -422,7 +448,6 @@ function resetImagePreview() {
   imagePreview.innerHTML = '';
   imageInput.value = '';
 }
-
 
 // Event Listeners
 document.getElementById('new-book-btn').addEventListener('click', () => {
@@ -452,19 +477,19 @@ document.getElementById('new-movie-form').addEventListener('submit', (e) => {
   e.preventDefault();
   addMovieToLibrary();
   document.getElementById('new-movie-form').style.display = 'none';
-  resetImagePreview();
+  resetImagePreview('movie-image');
 });
 
 document.getElementById('new-tv-show-form').addEventListener('submit', (e) => {
   e.preventDefault();
   addTVShowToLibrary();
   document.getElementById('new-tv-show-form').style.display = 'none';
-  resetImagePreview();
+  resetImagePreview('tv-show-image');
 });
 
 document.getElementById('new-podcast-form').addEventListener('submit', (e) => {
   e.preventDefault();
   addPodcastToLibrary();
   document.getElementById('new-podcast-form').style.display = 'none';
-  resetImagePreview();
+  resetImagePreview('podcast-image');
 });

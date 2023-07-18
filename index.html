@@ -1,130 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Library</title>
+  <meta charset="UTF-8">
+  <title>My Library</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
   <h1>My Library</h1>
 
-  <div id="library">
+  <section>
     <h2>Books</h2>
     <div id="books"></div>
+    <button id="new-book-btn">Add New Book</button>
+    <form id="new-book-form" style="display: none;">
+      <input type="text" id="title" placeholder="Title" required>
+      <input type="text" id="author" placeholder="Author" required>
+      <input type="number" id="pages" placeholder="Number of Pages" required>
+      <label for="read">Read:</label>
+      <input type="checkbox" id="read">
+      <input type="file" id="image" accept="image/*">
+      <div id="image-preview"></div>
+      <button type="submit">Add Book</button>
+      <button type="button" onclick="resetImagePreview()">Cancel</button>
+    </form>
+  </section>
 
+  <section>
     <h2>Movies</h2>
     <div id="movies"></div>
-
+    <button id="new-movie-btn">Add New Movie</button>
+    <form id="new-movie-form" style="display: none;">
+      <input type="text" id="movie-title" placeholder="Title" required>
+      <input type="text" id="director" placeholder="Director" required>
+      <input type="number" id="duration" placeholder="Duration (minutes)" required>
+      <label for="watched">Watched:</label>
+      <input type="checkbox" id="watched">
+      <input type="file" id="movie-image" accept="image/*">
+      <div id="movie-image-preview"></div>
+      <button type="submit">Add Movie</button>
+      <button type="button" onclick="resetImagePreview('movie-image')">Cancel</button>
+    </form>
+  </section>
+  
+  <section>
     <h2>TV Shows</h2>
     <div id="tv-shows"></div>
-
+    <button id="new-tv-show-btn">Add New TV Show</button>
+    <form id="new-tv-show-form" style="display: none;">
+      <input type="text" id="show-title" placeholder="Title" required>
+      <input type="text" id="show-creator" placeholder="Creator" required>
+      <input type="number" id="seasons" placeholder="Number of Seasons" required>
+      <label for="watched">Watched:</label>
+      <input type="checkbox" id="watched">
+      <input type="file" id="tv-show-image" accept="image/*">
+      <div id="tv-show-image-preview"></div>
+      <button type="submit">Add TV Show</button>
+      <button type="button" onclick="resetImagePreview('tv-show-image')">Cancel</button>
+    </form>
+  </section>
+  
+  <section>
     <h2>Podcasts</h2>
     <div id="podcasts"></div>
-  </div>
-
-  <button id="new-book-btn">New Book</button>
-  <button id="new-movie-btn">New Movie</button>
-  <button id="new-tv-show-btn">New TV Show</button>
-  <button id="new-podcast-btn">New Podcast</button>
-
-  <div id="new-book-form" style="display: none;">
-    <h2>Add a New Book</h2>
-    <form>
-      <label for="title">Title:</label>
-      <input type="text" id="title" required><br>
-
-      <label for="author">Author:</label>
-      <input type="text" id="author" required><br>
-
-      <label for="pages">Number of Pages:</label>
-      <input type="number" id="pages" required><br>
-
-      <label for="read">Read:</label>
-      <input type="checkbox" id="read"><br>
-
-      <label for="image">Image:</label>
-      <input type="file" id="image"><br>
-
-      <div id="image-preview"></div>
-
-      <input type="submit" value="Add Book" onclick="previewImage()">
-      <button onclick="resetImagePreview()">Close</button>
-    </form>
-  </div>
-
-  <div id="new-movie-form" style="display: none;">
-    <h2>Add a New Movie</h2>
-    <form>
-      <label for="movie-title">Title:</label>
-      <input type="text" id="movie-title" required><br>
-
-      <label for="director">Director:</label>
-      <input type="text" id="director" required><br>
-
-      <label for="duration">Duration (minutes):</label>
-      <input type="number" id="duration" required><br>
-
-      <label for="watched">Watched:</label>
-      <input type="checkbox" id="watched"><br>
-
-      <label for="image">Image:</label>
-      <input type="file" id="image"><br>
-
-      <div id="image-preview"></div>
-
-      <input type="submit" value="Add Movie" onclick="previewImage()">
-      <button onclick="resetImagePreview()">Close</button>
-    </form>
-  </div>
-
-  <div id="new-tv-show-form" style="display: none;">
-    <h2>Add a New TV Show</h2>
-    <form>
-      <label for="show-title">Title:</label>
-      <input type="text" id="show-title" required><br>
-
-      <label for="show-creator">Creator:</label>
-      <input type="text" id="show-creator" required><br>
-
-      <label for="seasons">Number of Seasons:</label>
-      <input type="number" id="seasons" required><br>
-
-      <label for="watched">Watched:</label>
-      <input type="checkbox" id="watched"><br>
-
-      <label for="image">Image:</label>
-      <input type="file" id="image"><br>
-
-      <div id="image-preview"></div>
-
-      <input type="submit" value="Add TV Show" onclick="previewImage()">
-      <button onclick="resetImagePreview()">Close</button>
-    </form>
-  </div>
-
-  <div id="new-podcast-form" style="display: none;">
-    <h2>Add a New Podcast</h2>
-    <form>
-      <label for="podcast-title">Title:</label>
-      <input type="text" id="podcast-title" required><br>
-
-      <label for="host">Host:</label>
-      <input type="text" id="host" required><br>
-
-      <label for="episodes">Number of Episodes:</label>
-      <input type="number" id="episodes" required><br>
-
+    <button id="new-podcast-btn">Add New Podcast</button>
+    <form id="new-podcast-form" style="display: none;">
+      <input type="text" id="podcast-title" placeholder="Title" required>
+      <input type="text" id="host" placeholder="Host" required>
+      <input type="number" id="episodes" placeholder="Number of Episodes" required>
       <label for="completed">Completed:</label>
-      <input type="checkbox" id="completed"><br>
-
-      <label for="image">Image:</label>
-      <input type="file" id="image"><br>
-
-      <div id="image-preview"></div>
-
-      <input type="submit" value="Add Podcast" onclick="previewImage()">
-      <button onclick="resetImagePreview()">Close</button>
+      <input type="checkbox" id="completed">
+      <input type="file" id="podcast-image" accept="image/*">
+      <div id="podcast-image-preview"></div>
+      <button type="submit">Add Podcast</button>
+      <button type="button" onclick="resetImagePreview('podcast-image')">Cancel</button>
     </form>
-  </div>
+  </section>  
 
   <script src="script.js"></script>
 </body>

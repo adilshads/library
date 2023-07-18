@@ -1,60 +1,60 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
 h1 {
-  text-align: center;
+text-align: center;
 }
 
 h2 {
-  margin-top: 20px;
+margin-top: 20px;
 }
 
 #library {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
 }
 
 .book-card,
 .movie-card,
 .tv-show-card,
 .podcast-card {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-  margin: 10px;
-  width: 200px;
+border: 1px solid #ccc;
+border-radius: 4px;
+padding: 10px;
+margin: 10px;
+width: 200px;
 }
 
 .book-card button,
 .movie-card button,
 .tv-show-card button,
 .podcast-card button {
-  margin-top: 10px;
+margin-top: 10px;
 }
 
 .preview-image {
-  max-width: 200px;
-  max-height: 200px;
-  object-fit: contain;
-  margin-top: 10px;
+max-width: 200px;
+max-height: 200px;
+object-fit: contain;
+margin-top: 10px;
 }
 
 .book-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 10px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+border: 1px solid #ddd;
+padding: 10px;
+margin-bottom: 10px;
 }
 
 .book-cover {
-  width: 150px;
-  height: 200px;
-  object-fit: cover;
-  margin-top: 10px;
+width: 150px;
+height: 200px;
+object-fit: cover;
+margin-top: 10px;
 }
