@@ -2,6 +2,7 @@
 
 My Library is a digital library application built as part of The Odin Project, enabling efficient book, movie, TV show, and podcast management and tracking.
 
+https://adilshads.github.io/library/
 
 2. **Table of Contents**
 
@@ -15,7 +16,6 @@ My Library is a digital library application built as part of The Odin Project, e
 8. [Acknowledgments](#acknowledgments)
 9. [Changelog](#changelog)
 10. [FAQ](#faq)
-11. [Additional Sections](#additional-sections)
 
 3. **Installation**: 
 
