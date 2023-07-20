@@ -21,6 +21,12 @@ Digital library application built as part of The Odin Project, enabling efficien
 
 10. **Acknowledgments**: Optionally, express gratitude or acknowledge individuals or organizations that have contributed to or inspired your project. This section is a way to give credit where it's due.
 
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+
 11. **Changelog**: If your project has a history of changes or releases, provide a summary of the version history and highlight notable updates or bug fixes. Include dates and version numbers.
 
 12. **FAQ**: Consider adding a Frequently Asked Questions (FAQ) section if you anticipate common queries or issues. Provide concise answers to address them.

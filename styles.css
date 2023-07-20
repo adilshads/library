@@ -1,60 +1,307 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1 {
-text-align: center;
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-title {
+  font-size: 24px;
+}
+
+.signin-button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.signin-button:hover {
+  background-color: #0056b3;
+}
+
+/* Main section styles */
+main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
 }
 
 h2 {
-margin-top: 20px;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
-#library {
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
+section {
+  display: flex;
+  flex-direction: column;
 }
 
-.book-card,
-.movie-card,
-.tv-show-card,
-.podcast-card {
-border: 1px solid #ccc;
-border-radius: 4px;
-padding: 10px;
-margin: 10px;
-width: 200px;
+button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
-.book-card button,
-.movie-card button,
-.tv-show-card button,
-.podcast-card button {
-margin-top: 10px;
+button:hover {
+  background-color: #0056b3;
 }
 
-.preview-image {
-max-width: 200px;
-max-height: 200px;
-object-fit: contain;
-margin-top: 10px;
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 }
 
-.book-card {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-border: 1px solid #ddd;
-padding: 10px;
-margin-bottom: 10px;
+input[type="text"],
+input[type="number"],
+label[for="read"],
+label[for="watched"],
+label[for="completed"] {
+  margin-bottom: 10px;
 }
 
-.book-cover {
-width: 150px;
-height: 200px;
-object-fit: cover;
-margin-top: 10px;
+input[type="checkbox"] {
+  margin-left: 5px;
+}
+
+input[type="file"] {
+  margin-top: 10px;
+}
+
+#image-preview,
+#movie-image-preview,
+#tv-show-image-preview,
+#podcast-image-preview {
+  margin-top: 10px;
+}
+
+button[type="submit"],
+button[type="button"] {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+  background-color: #0056b3;
+}
+
+/* Card styles */
+#books,
+#movies,
+#tv-shows,
+#podcasts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .signin-button {
+    margin-top: 10px;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  main {
+    padding: 10px;
+  }
+}
+
+/* Set a fixed size for the uploaded images */
+img {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  /* ... Previous responsive styles ... */
+
+  /* Adjust the image size for smaller screens */
+  img {
+    max-height: 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* ... Previous responsive styles ... */
+
+  /* Adjust the image size for even smaller screens */
+  img {
+    max-height: 120px;
+  }
+}
+
+/* ... Previous CSS rules ... */
+
+/* Card styles */
+.card {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+
+.card img {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card-content {
+  margin-top: 10px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative; 
+}
+
+form input[type="text"],
+form input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+form label {
+  margin-bottom: 5px;
+}
+
+form input[type="checkbox"] {
+  margin-left: 5px;
+}
+
+form button[type="submit"],
+form button[type="button"] {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button[type="submit"]:hover,
+form button[type="button"]:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  /* ... Previous responsive styles ... */
+
+  /* Adjust the image size for smaller screens */
+  img {
+    max-height: 150px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* ... Previous responsive styles ... */
+
+  /* Adjust the image size for even smaller screens */
+  img {
+    max-height: 120px;
+  }
+}
+
+/* Position the remove and toggle buttons below the image and card */
+.remove-button,
+.toggle-button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
 }
