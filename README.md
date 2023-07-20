@@ -4,6 +4,8 @@ My Library is a digital library application built as part of The Odin Project, e
 
 https://adilshads.github.io/library/
 
+![Screenshot](screenshotLibrary.png)
+
 2. **Table of Contents**
 
 1. [Installation](#installation)
