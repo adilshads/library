@@ -450,52 +450,7 @@ function resetImagePreview() {
 }
 
 
-// Event Listeners
-document.getElementById('new-book-btn').addEventListener('click', () => {
-  document.getElementById('new-book-form').style.display = 'block';
-});
 
-document.getElementById('new-movie-btn').addEventListener('click', () => {
-  document.getElementById('new-movie-form').style.display = 'block';
-});
-
-document.getElementById('new-tv-show-btn').addEventListener('click', () => {
-  document.getElementById('new-tv-show-form').style.display = 'block';
-});
-
-document.getElementById('new-podcast-btn').addEventListener('click', () => {
-  document.getElementById('new-podcast-form').style.display = 'block';
-});
-
-document.getElementById('new-book-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  addBookToLibrary();
-  document.getElementById('new-book-form').style.display = 'none';
-  resetImagePreview();
-});
-
-document.getElementById('new-movie-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  addMovieToLibrary();
-  document.getElementById('new-movie-form').style.display = 'none';
-  resetImagePreview('movie-image');
-});
-
-document.getElementById('new-tv-show-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  addTVShowToLibrary();
-  document.getElementById('new-tv-show-form').style.display = 'none';
-  resetImagePreview('tv-show-image');
-});
-
-document.getElementById('new-podcast-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  addPodcastToLibrary();
-  document.getElementById('new-podcast-form').style.display = 'none';
-  resetImagePreview('podcast-image');
-});
-
-// Delete Button 
 
 // Event Listeners
 document.getElementById('new-book-btn').addEventListener('click', () => {
@@ -582,4 +537,4 @@ document.getElementById('new-podcast-form').querySelector('button[type="button"]
   resetImagePreview();
 });
 
-// ... Existing code ...
+
