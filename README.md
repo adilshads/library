@@ -1,34 +1,72 @@
 # library
-Digital library application built as part of The Odin Project, enabling efficient book management and tracking.
 
-1. **Title and Description**: Begin with a descriptive title that summarizes your project. Follow it with a brief overview of what the project does and its purpose.
-
-2. **Table of Contents**: Include a table of contents with links to different sections of the `README.md` file. This allows readers to quickly navigate through the document.
-
-3. **Installation**: Provide instructions on how to install and set up your project. Include any dependencies, libraries, or tools required. If necessary, provide code snippets or commands to help users get started.
-
-4. **Usage**: Explain how to use your project. Provide examples, code snippets, or screenshots to demonstrate its functionality. Describe any important configuration options, command-line arguments, or environment variables.
-
-5. **Features**: Highlight the key features and functionalities of your project. Describe each feature briefly, and if applicable, provide examples or code snippets to demonstrate their usage.
-
-6. **Documentation**: If your project has additional documentation, such as API references, user guides, or developer documentation, provide links or instructions on how to access them.
-
-7. **Contributing**: If you welcome contributions to your project, outline the guidelines and instructions for contributing. Include information on how to submit bug reports, feature requests, or pull requests.
-
-8. **License**: Specify the license under which your project is distributed. Clearly state the license terms and any additional permissions or restrictions.
-
-9. **Authors**: List the authors or contributors who have worked on the project. Include their names, contact information, and, if applicable, links to their profiles or websites.
-
-10. **Acknowledgments**: Optionally, express gratitude or acknowledge individuals or organizations that have contributed to or inspired your project. This section is a way to give credit where it's due.
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+My Library is a digital library application built as part of The Odin Project, enabling efficient book, movie, TV show, and podcast management and tracking.
 
 
-11. **Changelog**: If your project has a history of changes or releases, provide a summary of the version history and highlight notable updates or bug fixes. Include dates and version numbers.
+2. **Table of Contents**
 
-12. **FAQ**: Consider adding a Frequently Asked Questions (FAQ) section if you anticipate common queries or issues. Provide concise answers to address them.
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Features](#features)
+4. [Documentation](#documentation)
+5. [Contributing](#contributing)
+6. [License](#license)
+7. [Authors](#authors)
+8. [Acknowledgments](#acknowledgments)
+9. [Changelog](#changelog)
+10. [FAQ](#faq)
+11. [Additional Sections](#additional-sections)
 
-13. **Additional Sections**: Depending on the nature of your project, you may want to include additional sections such as troubleshooting, known issues, or deployment instructions.
+3. **Installation**: 
+
+To run the My Library application, follow these steps:
+
+1. Clone this repository to your local machine.
+2. Open the `index.html` file in your web browser.
+
+
+4. **Usage**
+
+With My Library, you can manage your book, movie, TV show, and podcast collections. Here's how to use the application:
+
+1. **Books**: Add new books to your collection and keep track of their title, author, number of pages, and reading status. Optionally, you can add an image for each book.
+
+2. **Movies**: Add new movies to your collection and keep track of their title, director, duration, and watched status. Optionally, you can add an image for each movie.
+
+3. **TV Shows**: Add new TV shows to your collection and keep track of their title, creator, number of seasons, and watched status. Optionally, you can add an image for each TV show.
+
+4. **Podcasts**: Add new podcasts to your collection and keep track of their title, host, number of episodes, and completed status. Optionally, you can add an image for each podcast.
+
+
+5. **Features**: 
+
+- Continuous Integration and Continuous Deployment (CI/CD): The My Library application is set up with CI/CD, ensuring that any changes made to the code are automatically tested, built, and deployed to a live environment. This allows for a streamlined development process and ensures that the latest version of the application is always available to users.
+
+Add new books to your collection and keep track of their title, author, number of pages, and reading status. Optionally, you can add an image for each book.
+
+Add new movies to your collection and keep track of their title, director, duration, and watched status. Optionally, you can add an image for each movie.
+
+Add new TV shows to your collection and keep track of their title, creator, number of seasons, and watched status. Optionally, you can add an image for each TV show.
+
+Add new podcasts to your collection and keep track of their title, host, number of episodes, and completed status. Optionally, you can add an image for each podcast.
+
+6. **Documentation**:
+
+The application is continuously deployed, and the latest version can be accessed [here](https://adilshads.github.io/library/)
+
+7. **Contributing**
+
+Contributions to My Library are welcome! If you would like to contribute, please follow these guidelines:
+
+1. Fork the repository and create a new branch for your feature or bug fix.
+2. Make your changes and ensure that the code passes all tests.
+3. Submit a pull request detailing the changes you have made.
+
+
+8. **License**
+
+My Library is licensed under the [MIT License](LICENSE).
+
+9. **Authors**
+
+Adil Shad
